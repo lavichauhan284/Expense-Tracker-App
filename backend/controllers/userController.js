@@ -42,7 +42,9 @@ export async function registerUser(req, res) {
                     message: "User already exists"
                 });
             }
+            //password hashing
             const hashed = await bcrypt.hash(password, 10);
+            //user creation and save into database
             const user = await User.create({name, email, password: hashed});
             const token = createToken(user._id);
             res.status(201).json({
@@ -108,3 +110,102 @@ export async function registerUser(req, res) {
     }
   }
  //to get user login details
+
+ export async function getCurrentUser(req, res) {
+    try {
+        const user = await User.findById(req.user.id).select('name email');
+        if(!user) {
+
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+        res.json({
+            success: true,
+            user
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            message: "Server error"
+        });
+    }
+ }
+
+ //to update user profile
+ export async function updateProfile(req, res) {
+    const { name, email } = req.body;
+    if(!name || !email || !validator.isEmail(email)) {
+        return res.status(400).json({
+            success: false,
+            message: "valid Email and Name are required"
+        });
+    }
+    try{
+        const exist = await User.findOne({ email, _id: { $ne: req.user.id } });
+        if(exist) {
+            return res.status(400).json({
+                success: false,
+                message: "Email already in use"
+            });
+        }
+        const user = await User.findByIdAndUpdate(
+            req.user.id, 
+            { name, email },
+             { new: true , runValidators: true, select: 'name email' })
+        res.json({
+            success: true,
+            user
+        });
+
+    } 
+    catch (err) {
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            message: "Server error"
+        });
+    }
+ }
+
+ //to change user password
+ export async function updatePassword(req, res) {
+    const { currentPassword, newPassword } = req.body;
+    if(!currentPassword || !newPassword || newPassword.length < 8) {
+        return res.status(400).json({
+            success: false,
+            message: "Password invalid or too short!"
+        });
+    }
+    try{
+        const user = await User.findById(req.user.id).select('password');
+        if(!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+        const match = await bcrypt.compare(currentPassword, user.password);
+        if(!match) {
+            return res.status(401).json({
+                success: false,
+                message: "Current password is incorrect"
+            });
+        }
+        user.password = await bcrypt.hash(newPassword, 10);
+        await user.save();
+        res.json({
+            success: true,
+            message: "Password changed"
+        });
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            message: "Server error"
+        });
+    }
+}
