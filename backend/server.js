@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 connectDB();
 
 //Routes
+//userRoute.js
 app.use("/api/user", userRouter)
 
 app.get("/", (req, res) => {
