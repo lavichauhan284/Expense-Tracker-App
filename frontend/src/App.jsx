@@ -1,14 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Routes ,Route, useNavigate } from 'react-router-dom'
+import Layout from './components/Layout'
+import Dashboard from './pages/Dashboard'
 
 const App = () => {
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+  const navigate = useNavigate();
+
+  const clearAuth = () => {
+    try {
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("user");
+      sessionStorage.removeItem("token");
+    } catch (err) {
+      console.log("clearAuth error:", err);
+      
+    }
+    setUser(null);
+    setToken(null);
+  }
+
+  function handleLogout(){
+    clearAuth();
+    navigate("/login");
+  }
   return (
-    <div>
+   <>
+   <Routes>
+     <Route element={<Layout/>}>
+     <Route path="/" element={<Dashboard/>}/>
 
-      <h1 className="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-    </div>
-  )
-}
+     </Route>
+   </Routes>
+   </>
+  );
+};
 
-export default App
+export default App;
