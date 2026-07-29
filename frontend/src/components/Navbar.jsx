@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronDown , LogOut, User} from 'lucide-react';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5173/api';
+const BASE_URL = 'http://localhost:4000/api';
 
 const Navbar = ({user:propUser , onLogout}) => {
     const navigate = useNavigate();
     const menuRef = useRef();
     const [menuOpen, setMenuOpen] = useState(false);
+    const [currentUser, setCurrentUser] = useState(propUser);
 
     const user = propUser || {
         name:"",
@@ -28,7 +29,7 @@ const Navbar = ({user:propUser , onLogout}) => {
                     headers: {Authorization: `Bearer ${token}`},
                 });
                 const userData = response.data.user || response.data;
-                setUser(userData);
+                setCurrentUser(userData);
             } catch (error) {
                 console.log("Fetch to load profile" , error);
                 

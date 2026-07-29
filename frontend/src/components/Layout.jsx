@@ -6,7 +6,7 @@ import { Activity, ArrowDown, ArrowUp, Car, ChevronDown, ChevronUp, Clock, Credi
 import axios from 'axios';
 import { Outlet } from 'react-router-dom';
 
-const API_BASE = 'http://localhost:5173/api';
+const API_BASE = 'http://localhost:4000/api';
 const CATEGORY_ICONS = {
   Food: <Utensils className="w-4 h-4" />,
   Housing: <Home className="w-4 h-4" />,
@@ -338,7 +338,7 @@ const fetchTransactions = async () => {
                   <p className={styles.statCards.cardTitle}>Monthly Income</p>
                   <p className={styles.statCards.cardValue}>
                     $
-                    {stats.allTimeSavings.toLocaleString("en-US" ,{
+                    {stats.last30DaysIncome.toLocaleString("en-US" ,{
                       maximumFractionDigits:2,
                     })}
                   </p>
@@ -487,7 +487,7 @@ const fetchTransactions = async () => {
                         </div>
 
                         <span className={styles.colors.transaction.text(type)}>
-                          {type === 'income' ? "+" : "-"}${number(amount)}
+                          {type === 'income' ? "+" : "-"}${Number(amount)}
 
                         </span>
 
