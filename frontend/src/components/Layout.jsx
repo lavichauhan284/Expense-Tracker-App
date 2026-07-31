@@ -425,7 +425,7 @@ const fetchTransactions = async () => {
                   </h3>
 
                 </div>
-                {/* <Outlet context={outletContext}/> */}
+                <Outlet context={outletContext}/>
 
               </div>
 
