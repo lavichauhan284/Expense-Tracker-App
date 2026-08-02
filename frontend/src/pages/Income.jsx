@@ -33,6 +33,7 @@ import { incomeStyles as styles } from "../assets/dummyStyles";
 
 const API_BASE = "http://localhost:4000/api";
 
+//helps in converting date to ISO time
 function toIsoWithClientTime(dateValue) {
   if (!dateValue) {
     return new Date().toISOString();
@@ -52,6 +53,7 @@ function toIsoWithClientTime(dateValue) {
   }
 }
 
+//small component
 const IncomeChart = ({ chartData, timeFrame, timeFrameRange }) => (
   <div className={styles.chartContainer}>
     <div className={styles.chartHeaderContainer}>
@@ -137,8 +139,9 @@ const IncomeChart = ({ chartData, timeFrame, timeFrameRange }) => (
       </ResponsiveContainer>
     </div>
   </div>
-);
+);//for income chart
 
+//small component
 const FilterSection = ({ filter, setFilter, handleExport }) => (
   <div className={styles.filterContainer}>
     <div className="relative w-full sm:w-auto">
@@ -163,8 +166,7 @@ const FilterSection = ({ filter, setFilter, handleExport }) => (
       <Download size={16} className="md:size-4" /> Export
     </button>
   </div>
-);
-
+); //added from filtering the data
 const Income = () => {
   const {
     transactions: outletTransactions = [],
