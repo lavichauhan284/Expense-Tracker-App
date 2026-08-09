@@ -1,4 +1,4 @@
-# 💰 Expense Tracker
+# 💰 Expense Tracker App
 
 A modern **Expense Tracker Web Application** built using the **MERN Stack** that helps users manage their income and expenses, track transactions, and understand their financial activity through an interactive dashboard.
 
