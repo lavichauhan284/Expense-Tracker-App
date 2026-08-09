@@ -311,15 +311,25 @@ const Income = () => {
     fetchOverview(timeFrame ?? "monthly");
   }, [fetchOverview, timeFrame]);
 
+  // const totalIncome = useMemo(
+  //   () =>
+  //     overview.totalIncome ??
+  //     filteredTransactions.reduce(
+  //       (sum, t) => sum + Math.round(Number(t.amount || 0)),
+  //       0,
+  //     ),
+  //   [overview.totalIncome, filteredTransactions],
+  // );
   const totalIncome = useMemo(
-    () =>
-      overview.totalIncome ??
-      filteredTransactions.reduce(
-        (sum, t) => sum + Math.round(Number(t.amount || 0)),
-        0,
-      ),
-    [overview.totalIncome, filteredTransactions],
-  );
+  () =>
+    overview.totalIncome > 0
+      ? Math.round(overview.totalIncome)
+      : filteredTransactions.reduce(
+          (sum, t) => sum + Math.round(Number(t.amount || 0)),
+          0,
+        ),
+  [overview.totalIncome, filteredTransactions],
+);
 
   const averageIncome = useMemo(
     () =>
@@ -336,10 +346,17 @@ const Income = () => {
     [overview.averageIncome, filteredTransactions],
   );
 
+  // const transactionsCount = useMemo(
+  //   () => overview.numberOfTransactions ?? filteredTransactions.length,
+  //   [overview.numberOfTransactions, filteredTransactions],
+  // );
   const transactionsCount = useMemo(
-    () => overview.numberOfTransactions ?? filteredTransactions.length,
-    [overview.numberOfTransactions, filteredTransactions],
-  );
+  () =>
+    overview.numberOfTransactions > 0
+      ? overview.numberOfTransactions
+      : filteredTransactions.length,
+  [overview.numberOfTransactions, filteredTransactions],
+);
 
   const handleAddTransaction = useCallback(async () => {
     if (!newTransaction.description || !newTransaction.amount) return;
