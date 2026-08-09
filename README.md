@@ -7,6 +7,10 @@ A modern **Expense Tracker Web Application** built using the **MERN Stack** that
 ### 🏠 Dashboard
 
 ![Dashboard](./screenshots/dashboard1.png)
+![Dashboard](./screenshots/dashboard2.png)
+![Dashboard](./screenshots/dashboard3.png)
+![Dashboard](./screenshots/dashboard4.png)
+![Dashboard](./screenshots/addtransaction.png)
 
 The dashboard provides an overview of:
 
@@ -19,7 +23,9 @@ The dashboard provides an overview of:
 
 ### 💵 Income Management
 
-![Income](./screenshots/income.png)
+![Income](./screenshots/income1.png)
+![Income](./screenshots/income3.png)
+![Income](./screenshots/addincome.png)
 
 Users can:
 
@@ -30,7 +36,9 @@ Users can:
 
 ### 💸 Expense Management
 
-![Expenses](./screenshots/expenses.png)
+![Expenses](./screenshots/expense1.png)
+![Expenses](./screenshots/expense3.png)
+![Expenses](./screenshots/addexpense.png)
 
 Users can:
 
@@ -42,18 +50,20 @@ Users can:
 
 ### 📊 Financial Analytics
 
-![Analytics](./screenshots/analytics.png)
+![Analytics](./screenshots/income2.png)
+![Analytics](./screenshots/expense2.png)
 
 Interactive charts help users understand their:
 
 * Income trends
 * Expense trends
 * Monthly spending
-* Savings
+* Saving
 
 ### 🔐 Authentication
 
-![Login](./screenshots/login.png)
+![Login](./screenshots/signin.png)
+![Login](./screenshots/signup.png)
 
 The application includes secure user authentication with:
 
@@ -63,6 +73,16 @@ The application includes secure user authentication with:
 * Protected Routes
 
 ---
+
+### 👤 Profile & Edit Profile
+
+![Profile](./screenshots/profile.png)
+
+Users can:
+- View their profile information
+- Edit profile details
+- Update personal information
+- Manage their account securely
 
 ## 🚀 Features
 
@@ -118,31 +138,42 @@ The application includes secure user authentication with:
 ```text
 expense-tracker/
 │
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middlewares/
+│   ├── models/
+│   ├── routes/
+|   ├── utils
+│   ├── server.js
+│   └── package.json
+│
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
 │   │   ├── pages/
-│   │   ├── context/
-│   │   ├── services/
-│   │   └── App.jsx
-│   │
-│   └── package.json
-│
-├── backend/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── config/
-│   ├── server.js
+│   │   ├── assets/
+│   │   ├── App.jsx
+│   │   └── main.jsx
 │   └── package.json
 │
 ├── screenshots/
-│   ├── dashboard.png
-│   ├── income.png
-│   ├── expenses.png
-│   ├── analytics.png
-│   └── login.png
+│   ├── addtransaction.png
+|   ├── addincome.png
+|   ├── addexpense.png
+│   ├── dashboard1.png
+│   ├── dashboard2.png
+│   ├── dashboard3.png
+│   ├── dashboard4.png
+│   ├── income1.png
+│   ├── income2.png
+│   ├── income3.png
+│   ├── expenses1.png
+│   ├── expenses2.png
+│   ├── expenses3.png
+│   ├── profile.png
+│   ├── signin.png
+│   ├── signup.png
 │
 └── README.md
 ```
@@ -177,23 +208,13 @@ cd ../backend
 npm install
 ```
 
-### 5. Configure Environment Variables
-
-Create a `.env` file inside the `backend` folder:
-
-```env
-PORT=4000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-```
-
-### 6. Start Backend
+### 5. Start Backend
 
 ```bash
 npm run dev
 ```
 
-### 7. Start Frontend
+### 6. Start Frontend
 
 Open another terminal:
 
@@ -265,33 +286,6 @@ While developing this project, I gained practical experience in:
 
 ---
 
-## 🔮 Future Improvements
-
-* 📱 Mobile application
-* 🌙 Dark/Light mode
-* 📧 Email notifications
-* 📤 Export transactions to PDF/Excel
-* 🤖 AI-based spending insights
-* 💡 Smart budget recommendations
-* 🔔 Expense reminders
-* ☁️ Cloud deployment
-* 📊 Advanced financial reports
-
----
-
 ## 👩‍💻 Author
 
 **Lavi Chauhan**
-
-B.Tech CSE (AI, ML & DL)
-
-### Connect with Me
-
-* GitHub: `https://github.com/your-username`
-* LinkedIn: `https://linkedin.com/in/your-profile`
-
----
-
-## ⭐ Support
-
-If you found this project useful, consider giving it a ⭐ on GitHub!
