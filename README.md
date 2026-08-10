@@ -46,7 +46,6 @@ Users can:
 * Categorize expenses
 * View expense history
 * Delete transactions
-* Monitor spending patterns
 
 ### 📊 Financial Analytics
 
